@@ -1,0 +1,8 @@
+{
+  "job_offer_classifier": {
+    "Overview": "/",
+    "Merge datasets": "/merge_datasets",
+    "Pipeline ": "/pipeline_classifier",
+    "K Fold Validation ": "/k_fold_validation"
+  }
+}
