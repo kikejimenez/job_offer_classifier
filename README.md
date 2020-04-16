@@ -12,7 +12,7 @@ Clone the [GitHub](https://github.com/kikejimenez/job_offer_classifier) reposito
 
 ### Run the Pipeline
 
-First load and run the data science pipeline by importing the library  *job_email_classifier.pipeline_classifier*
+First load and run the data science pipeline by importing the module:
 
 ```python
 from job_offer_classifier.pipeline_classifier import Pipeline
@@ -160,8 +160,8 @@ kfp.avg_evaluation['test']
 
 
 
-Over 4 foldings, the averaged accuracy of 94%, while the F1 score is 95%
+Over 4 foldings, the averaged accuracy in the test set is of 94%, while the F1 score is 95%
 
 ## Documentation
 
-To further inquire on the training parameters, how to store and load trained models, please refer to the [pipeline_classifier](/job_offer_classifier/pipeline_classifier/) module. The k fold validation can be found in the [k_fold_validation](/job_offer_classifier/k_fold_validation/) module
+To further inquire on the training parameters, how to store and load trained models, please refer to the [Pipeline](/job_offer_classifier/pipeline_classifier/) docs. The k fold validation can be found in the [K fold](/job_offer_classifier/k_fold_validation/) docs
