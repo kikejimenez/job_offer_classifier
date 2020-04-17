@@ -4,7 +4,9 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"load_datasets": "00_merge_datasets.ipynb",
          "merge_datasets": "00_merge_datasets.ipynb",
-         "load_and_split_data": "01_pipeline_classifier.ipynb",
+         "split_dataframe": "01_pipeline_classifier.ipynb",
+         "concat_and_shuffle": "01_pipeline_classifier.ipynb",
+         "balanced_labels_in_split": "01_pipeline_classifier.ipynb",
          "tf_input_fn": "01_pipeline_classifier.ipynb",
          "train_input_fs": "01_pipeline_classifier.ipynb",
          "predict_input_fs": "01_pipeline_classifier.ipynb",
