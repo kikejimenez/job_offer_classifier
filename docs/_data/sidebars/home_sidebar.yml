@@ -16,8 +16,8 @@ entries:
       title: 'Pipeline '
       url: /pipeline_classifier
     - output: web,pdf
-      title: 'K Fold Validation '
-      url: /k_fold_validation
+      title: Algorithm Validations
+      url: /validations
     output: web
     title: job_offer_classifier
   output: web

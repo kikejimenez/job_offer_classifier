@@ -21,9 +21,11 @@ from job_offer_classifier.pipeline_classifier import Pipeline
 Instantiate the class `Pipeline` and call the `pipeline` method. This method loads the dataset, and trains and evaluates the model. The source file is the annotated dataset of payloads.
 
 ```python
-pl = Pipeline(src_file = '../data/interim/payloads.csv')
+pl = Pipeline(src_file = '../data/interim/payloads.csv',random_state=931696214)
 pl.pipeline()
 ```
+
+The parameter `random_state` is the pandas seed used in the dataframe split. This parameter is necessary to present deterministic results and has been chosen from the results of the [k fold validation](#K-fold-validation).
 
 ### Predict Job Offer Sentiments
 
@@ -45,16 +47,23 @@ on June 27, 2000.''')
 One can take an example from the test set, contained in the `dfs` attribute. This attribute is a dictionary of  pandas dataframes.
 
 ```python
-example = pl.dfs['test'].sample().payload.iloc[0]
+example = pl.dfs['test'].sample(random_state=1213702178).payload.iloc[0]
 print(example.strip())
 ```
 
-    as we discussed on the phone, i am very pleased to accept the position of Scientific laboratory technician with Wagner-Rodriguez, thank you for the opportunity.
-    i am eager to
-    make a positive contribution to the company and to work with everyone on the team .
-    as we discussed, my starting salary will be $9521 and health and life insurance benefits will be provided after 30 days of employment.
-    i look forward to starting employment on October 12, 1991. if there is any additional information or paperwork you need prior to then, please let me
-    know.
+    thank you for offering me the position of financial analyst at Lozano-Carlson.
+    i was delighted to meet
+    you and learn more about the company.
+    although i verbally agreed to accept the position, i have given it a lot of thought and decided to turn
+    down the post.
+    i believe it is in my, and your company’s, best interests.
+    ultimately, i elected to take on a
+    position at a firm where i believe my skills and experience are a better fit. i truly apologise for any
+    inconvenience i have caused.
+    i was impressed with Lozano-Carlson during the interview, and continue to be at this time.
+    wishing you
+    all the best in the future and hope to still see you in attendance at the snow terrace financial conference
+    in june.
 
 
 ```python
@@ -64,7 +73,7 @@ pl.sentiment(example)
 
 
 
-    'positive'
+    'negative'
 
 
 
@@ -76,14 +85,14 @@ We use two tools to assesss the performance of the model:
 
 ### Confusion matrix
 
-To plot the confusion matrix the `Pipeline` has the method `plot_confusion_matrix`.
+To plot the confusion matrix, the `Pipeline` has the method `plot_confusion_matrix`.
 
 ```python
 pl.plot_confusion_matrix('train')
 ```
 
 
-![png](docs/images/output_19_0.png)
+![png](docs/images/output_20_0.png)
 
 
 ```python
@@ -91,77 +100,86 @@ pl.plot_confusion_matrix('test')
 ```
 
 
-![png](docs/images/output_20_0.png)
+![png](docs/images/output_21_0.png)
 
 
-The percentage of the cases that are negative and predicted positive tend to be greater than the percent of the cases that are positive and predicted as negative. The model tends to be benevolent regarding job acceptances. This is consistent with that fact that the dataset has more positive than negative cases
+The percentage of the cases that are negative and predicted positive (*False Negative rate*) tend to be greater than the percent of the cases that are positive and predicted negative (*True Negative rate*).  This is consistent with that fact that the dataset has more positive than negative cases and the model tends to see more positives.
+
 
 ### K fold validation
 
-To assess the performance of the model via the k fold validation method, import the class `KFoldPipeline` in the  *k_fold_validation* submodule of *job_offer_classifier*
+To assess the performance of the model via the k fold validation method, import the class [`KFoldPipe`](/job_offer_classifier/validations#KFoldPipe)
 
 ```python
-from job_offer_classifier.k_fold_validation import KFoldPipeline
+from job_offer_classifier.validations import KFoldPipe
 ```
-
-    The history saving thread hit an unexpected error (OperationalError('database is locked')).History will not be written to the database.
-
 
 Run the `k_fold_validation` method
 
 ```python
-kfp = KFoldPipeline(dataset_file='../data/interim/payloads.csv',n_splits=4)
+kfp = KFoldPipe(src_file='../data/interim/payloads.csv',n_splits=4)
 kfp.k_fold_validation()
 ```
 
-The averaged scores are stored in `avg_evaluation`
+The averaged scores are stored in `averages`
 
 ```python
-kfp.avg_evaluation['train']
+kfp.averages['train']
 ```
 
 
 
 
-    {'accuracy': 0.9899031668901443,
-     'accuracy_baseline': 0.7989590167999268,
-     'auc': 0.9956953227519989,
-     'auc_precision_recall': 0.9985404014587402,
-     'average_loss': 0.0570867033675313,
-     'label/mean': 0.7989590167999268,
-     'loss': 0.04432356869801879,
-     'precision': 0.9893230199813843,
-     'prediction/mean': 0.8003168553113937,
-     'recall': 0.997493714094162,
+    {'accuracy': 0.9926739931106567,
+     'accuracy_baseline': 0.7985348105430603,
+     'auc': 0.9967785626649857,
+     'auc_precision_recall': 0.9990537911653519,
+     'average_loss': 0.04917445499449968,
+     'label/mean': 0.7985348105430603,
+     'loss': 0.08832819480448961,
+     'precision': 0.9909193366765976,
+     'prediction/mean': 0.7993625551462173,
+     'recall': 1.0,
      'global_step': 5000.0,
-     'f1_score': 0.9933855340830338}
+     'f1_score': 0.995436381378182}
 
 
 
 ```python
-kfp.avg_evaluation['test']
+kfp.averages['test']
 ```
 
 
 
 
-    {'accuracy': 0.9477716684341431,
-     'accuracy_baseline': 0.7994505614042282,
-     'auc': 0.4650697857141495,
-     'auc_precision_recall': 0.9483350813388824,
-     'average_loss': 0.1706756204366684,
-     'label/mean': 0.7994505614042282,
-     'loss': 0.1706756204366684,
-     'precision': 0.9448260068893433,
-     'prediction/mean': 0.8004413545131683,
-     'recall': 0.9670821875333786,
+    {'accuracy': 0.9444444179534912,
+     'accuracy_baseline': 0.800000011920929,
+     'auc': 0.9571759253740311,
+     'auc_precision_recall': 0.9839732944965363,
+     'average_loss': 0.18561936542391777,
+     'label/mean': 0.800000011920929,
+     'loss': 0.18561936542391777,
+     'precision': 0.9559257626533508,
+     'prediction/mean': 0.8156909495592117,
+     'recall': 0.9756944328546524,
      'global_step': 5000.0,
-     'f1_score': 0.9555388394138677}
+     'f1_score': 0.9655843100089102}
 
 
 
-Over 4 foldings, the averaged accuracy in the test set is of 94%, while the F1 score is 95%
+The seed of the best F1 score is stored in `best_seed`
+
+```python
+kfp.best_seed
+```
+
+
+
+
+    1852901353
+
+
 
 ## Documentation
 
-To further inquire on the training parameters, how to store and load trained models, please refer to the [Pipeline](/job_offer_classifier/pipeline_classifier/) docs. The k fold validation can be found in the [K fold](/job_offer_classifier/k_fold_validation/) docs
+To further inquire on the training parameters, how to store and load trained models, please refer to the [pipeline docs](/job_offer_classifier/pipeline_classifier). The validation method can be found in the [validations docs](/job_offer_classifier/validations) 

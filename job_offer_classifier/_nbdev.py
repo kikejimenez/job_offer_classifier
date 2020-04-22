@@ -4,7 +4,8 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"load_datasets": "00_merge_datasets.ipynb",
          "merge_datasets": "00_merge_datasets.ipynb",
-         "load_and_split_data": "01_pipeline_classifier.ipynb",
+         "split_dataframe": "01_pipeline_classifier.ipynb",
+         "balanced_labels_in_split": "01_pipeline_classifier.ipynb",
          "tf_input_fn": "01_pipeline_classifier.ipynb",
          "train_input_fs": "01_pipeline_classifier.ipynb",
          "predict_input_fs": "01_pipeline_classifier.ipynb",
@@ -18,13 +19,13 @@ index = {"load_datasets": "00_merge_datasets.ipynb",
          "plot_confusion_matrix": "01_pipeline_classifier.ipynb",
          "export_estimator": "01_pipeline_classifier.ipynb",
          "Pipeline": "01_pipeline_classifier.ipynb",
-         "k_fold_validation": "02_k_fold_validation.ipynb",
-         "score_averages": "02_k_fold_validation.ipynb",
-         "KFoldPipeline": "02_k_fold_validation.ipynb"}
+         "log_status": "02_validations.ipynb",
+         "average_scores": "02_validations.ipynb",
+         "KFoldPipe": "02_validations.ipynb"}
 
 modules = ["merge_datasets.py",
            "pipeline_classifier.py",
-           "k_fold_validation.py"]
+           "validations.py"]
 
 doc_url = "https://kikejimenez.github.io/job_offer_classifier/"
 
