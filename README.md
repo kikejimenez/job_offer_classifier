@@ -6,6 +6,16 @@ This project classifies job offer response emails as 'positive' or 'negative' ac
 
 ## Install
 
+### Pip
+
+The sentiment classifier can be found on PyPI so you can just run:
+
+```shell
+pip install job-offer-classifier
+```
+
+### Github
+
 Clone the [GitHub](https://github.com/kikejimenez/job_offer_classifier) repository and `cd` to the cloned repo directory. Install the depencies in the `requeriments.txt`. The use of *REPL* or  *Notebook* is strongly  recommended
 
 ## How to use
@@ -92,7 +102,7 @@ pl.plot_confusion_matrix('train')
 ```
 
 
-![png](docs/images/output_20_0.png)
+![png](docs/images/output_24_0.png)
 
 
 ```python
@@ -100,7 +110,7 @@ pl.plot_confusion_matrix('test')
 ```
 
 
-![png](docs/images/output_21_0.png)
+![png](docs/images/output_25_0.png)
 
 
 The percentage of the cases that are negative and predicted positive (*False Negative rate*) tend to be greater than the percent of the cases that are positive and predicted negative (*True Negative rate*).  This is consistent with that fact that the dataset has more positive than negative cases and the model tends to see more positives.

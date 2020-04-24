@@ -173,7 +173,7 @@ def export_estimator(estimator, dst_estimator):
 
 # Cell
 class Pipeline:
-    '''Class that implements the previous functions as their methods.'''
+    '''Implements the workflow: Load -> Train -> Evaluate.'''
     def __init__(
         self,
         src_file,
