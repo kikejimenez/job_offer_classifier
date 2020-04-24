@@ -176,7 +176,7 @@ class Pipeline:
     '''Implements the workflow: Load -> Train -> Evaluate.'''
     def __init__(
         self,
-        src_file,
+        src_file=None,
         estimator_dir=None,
         frac=0.60,
         train_steps=5000,
@@ -188,11 +188,11 @@ class Pipeline:
         self.frac = frac
         self.estimator_dir = estimator_dir
         self.random_state = random_state
-        self.data = pd.read_csv(src_file)
-
         self.train_steps = train_steps
         self.module_spec = "https://tfhub.dev/google/nnlm-en-dim128/1"
-        self.split_dataset()
+        if src_file is not None:
+            self.data = pd.read_csv(src_file)
+            self.split_dataset()
 
     def __del__(self):
         ''' Removes the `estimator` and its corresponding directory
