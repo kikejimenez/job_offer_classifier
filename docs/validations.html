@@ -106,10 +106,10 @@ description: "Validations for the Sentiment Classifier. "
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>11:02:08 INFO: The accuracy score for the test set in fold 0 is 0.5     
-11:02:08 INFO: The f1_score score for the test set in fold 0 is 0.3333333333333333     
-11:02:08 INFO: this is extra info
-11:02:08 INFO: fold 0 has finished...
+<pre>07:46:34 INFO: The accuracy score for the test set in fold 0 is 0.5     
+07:46:34 INFO: The f1_score score for the test set in fold 0 is 0.3333333333333333     
+07:46:34 INFO: this is extra info
+07:46:34 INFO: fold 0 has finished...
 </pre>
 </div>
 </div>
@@ -284,8 +284,8 @@ the best score</p>
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="KFoldPipe.k_fold_validation" class="doc_header"><code>KFoldPipe.k_fold_validation</code><a href="https://github.com/kikejimenez/job_offer_classifier/tree/master/job_offer_classifier/validations.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>KFoldPipe.k_fold_validation</code>()</p>
 </blockquote>
-<p>Run the pipeline over all the seeds.
-Store the best seed, keep evaluations history and averages over the scores.</p>
+<p>Runs the pipeline over all the seeds.
+Stores the best seed, keeps evaluations history and averages over the scores.</p>
 <p>On each iteration:</p>
 <p>-splits the data over the seed of the current iteration</p>
 <p>-run the pipeline</p>
@@ -342,12 +342,12 @@ Store the best seed, keep evaluations history and averages over the scores.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>11:02:09 INFO: The accuracy score for the test set in fold 1 is 0.55     
-11:02:09 INFO: The f1_score score for the test set in fold 1 is 0.5     
-11:02:09 INFO: fold 1 has finished...
-11:02:09 INFO: The accuracy score for the test set in fold 2 is 0.7     
-11:02:09 INFO: The f1_score score for the test set in fold 2 is 0.6     
-11:02:09 INFO: fold 2 has finished...
+<pre>07:46:35 INFO: The accuracy score for the test set in fold 1 is 0.55     
+07:46:35 INFO: The f1_score score for the test set in fold 1 is 0.5     
+07:46:35 INFO: fold 1 has finished...
+07:46:35 INFO: The accuracy score for the test set in fold 2 is 0.7     
+07:46:35 INFO: The f1_score score for the test set in fold 2 is 0.6     
+07:46:35 INFO: fold 2 has finished...
 </pre>
 </div>
 </div>
@@ -379,16 +379,16 @@ Store the best seed, keep evaluations history and averages over the scores.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>11:02:09 INFO: Using /tmp/tfhub_modules to cache modules.
-11:02:52 INFO: The accuracy score for the test set in fold 1 is 0.9338843     
-11:02:52 INFO: The f1_score score for the test set in fold 1 is 0.9595959682195068     
-11:02:52 INFO: fold 1 has finished...
-11:03:28 INFO: The accuracy score for the test set in fold 2 is 0.9586777     
-11:03:28 INFO: The f1_score score for the test set in fold 2 is 0.9746192779840566     
-11:03:28 INFO: fold 2 has finished...
-11:04:08 INFO: The accuracy score for the test set in fold 3 is 0.9586777     
-11:04:08 INFO: The f1_score score for the test set in fold 3 is 0.9743589811243561     
-11:04:08 INFO: fold 3 has finished...
+<pre>07:46:35 INFO: Using /tmp/tfhub_modules to cache modules.
+07:47:15 INFO: The accuracy score for the test set in fold 1 is 0.96694213     
+07:47:15 INFO: The f1_score score for the test set in fold 1 is 0.9791666439139396     
+07:47:15 INFO: fold 1 has finished...
+07:47:49 INFO: The accuracy score for the test set in fold 2 is 0.9586777     
+07:47:49 INFO: The f1_score score for the test set in fold 2 is 0.974093273148837     
+07:47:49 INFO: fold 2 has finished...
+07:48:25 INFO: The accuracy score for the test set in fold 3 is 0.94214875     
+07:48:25 INFO: The f1_score score for the test set in fold 3 is 0.9637305687064565     
+07:48:25 INFO: fold 3 has finished...
 </pre>
 </div>
 </div>
@@ -496,7 +496,7 @@ Store the best seed, keep evaluations history and averages over the scores.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>The evaluations are equal up to a factor of 6x10^(-2)
+<pre>The evaluations are equal up to a factor of 2x10^(-1)
 </pre>
 </div>
 </div>
@@ -549,18 +549,18 @@ Store the best seed, keep evaluations history and averages over the scores.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;accuracy&#39;: 0.9504132469495138,
+<pre>{&#39;accuracy&#39;: 0.9559228618939718,
  &#39;accuracy_baseline&#39;: 0.8016529083251953,
- &#39;auc&#39;: 0.98518039782842,
- &#39;auc_precision_recall&#39;: 0.9961815476417542,
- &#39;average_loss&#39;: 0.11889850844939549,
+ &#39;auc&#39;: 0.9919100801150004,
+ &#39;auc_precision_recall&#39;: 0.9979395270347595,
+ &#39;average_loss&#39;: 0.10010440647602081,
  &#39;label/mean&#39;: 0.8016529083251953,
- &#39;loss&#39;: 0.11889850844939549,
- &#39;precision&#39;: 0.9566606084505717,
- &#39;prediction/mean&#39;: 0.8147960503896078,
- &#39;recall&#39;: 0.9828178683916727,
+ &#39;loss&#39;: 0.10010440647602081,
+ &#39;precision&#39;: 0.9791301290194193,
+ &#39;prediction/mean&#39;: 0.7820513447125753,
+ &#39;recall&#39;: 0.9656357367833456,
  &#39;global_step&#39;: 5000.0,
- &#39;f1_score&#39;: 0.9695247424426398}</pre>
+ &#39;f1_score&#39;: 0.9723301619230776}</pre>
 </div>
 
 </div>

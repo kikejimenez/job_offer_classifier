@@ -190,21 +190,18 @@ class Pipeline:
         self.random_state = random_state
         self.train_steps = train_steps
         self.module_spec = "https://tfhub.dev/google/nnlm-en-dim128/1"
+        self.estimator = None
+
         if src_file is not None:
             self.data = pd.read_csv(src_file)
             self.split_dataset()
 
     def __del__(self):
-        ''' Removes the `estimator` and its corresponding directory
+        ''' Removes the `estimator` and its corresponding directory,
+        unless the estimator_dir is None.
         '''
-        try:
-            _ = self.estimator
-        except:
-            self.load_estimator()
-        model_dir = self.estimator.model_dir
-        del self.estimator
-        if path.isdir(model_dir):
-            rmtree(model_dir)
+        if self.estimator is not None and self.estimator_dir is None:
+            rmtree(self.estimator.model_dir,ignore_errors=True)
 
     def split_dataset(self):
         self.dfs = balanced_labels_in_split(
