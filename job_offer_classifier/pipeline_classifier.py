@@ -173,10 +173,10 @@ def export_estimator(estimator, dst_estimator):
 
 # Cell
 class Pipeline:
-    '''Class that implements the previous functions as their methods.'''
+    '''Implements the workflow: Load -> Train -> Evaluate.'''
     def __init__(
         self,
-        src_file,
+        src_file=None,
         estimator_dir=None,
         frac=0.60,
         train_steps=5000,
@@ -188,34 +188,38 @@ class Pipeline:
         self.frac = frac
         self.estimator_dir = estimator_dir
         self.random_state = random_state
-        self.data = pd.read_csv(src_file)
-
         self.train_steps = train_steps
         self.module_spec = "https://tfhub.dev/google/nnlm-en-dim128/1"
-        self.split_dataset()
+        self.estimator = None
+
+        if src_file is not None:
+            self.data = pd.read_csv(src_file)
+            self.split_dataset()
 
     def __del__(self):
-        ''' Removes the `estimator` and its corresponding directory
+        ''' Removes the `estimator` and its corresponding directory,
+        unless the estimator_dir is None.
         '''
-        try:
-            _ = self.estimator
-        except:
-            self.load_estimator()
-        model_dir = self.estimator.model_dir
-        del self.estimator
-        if path.isdir(model_dir):
-            rmtree(model_dir)
+        if self.estimator is not None and self.estimator_dir is None:
+            rmtree(self.estimator.model_dir, ignore_errors=True)
 
     def split_dataset(self):
+        ''' Train-test splits. Deletes empty dataframes.
+        '''
         self.dfs = balanced_labels_in_split(
             self.data, random_state=self.random_state, frac=self.frac
         )
+        if self.dfs['test'].shape[0] == 0:
+            del self.dsf['test']
+        if self.dfs['train'].shape[0] == 0:
+            del self.dsf['train']
 
     def input_fns(self):
-        self.input = {
-            'train': train_input_fs(train=self.dfs['train']),
-            'predict': predict_input_fs(**self.dfs)
-        }
+        self.input = {}
+        if 'train' in self.dfs.keys():
+            self.input['train'] = train_input_fs(train=self.dfs['train'])
+
+        self.input['predict'] = predict_input_fs(**self.dfs)
 
     def load_estimator(self):
         self.embedded_text_feature_column = embedded_text_feature_column_f(
@@ -226,7 +230,8 @@ class Pipeline:
         )
 
     def train(self):
-        train(self.estimator, self.input['train'], steps=self.train_steps)
+        if self.input['train'] is not None:
+            train(self.estimator, self.input['train'], steps=self.train_steps)
 
     def evaluate(self):
         self.evaluation = evaluate(self.estimator, **self.input['predict'])

@@ -6,7 +6,17 @@ This project classifies job offer response emails as 'positive' or 'negative' ac
 
 ## Install
 
-Clone the [GitHub](https://github.com/kikejimenez/job_offer_classifier) repository and `cd` to the cloned repo directory. Install the depencies in the `requeriments.txt`. The use of *REPL* or  *Notebook* is strongly  recommended
+The sentiment classifier can be found on PyPI so you can just run:
+
+```shell
+pip install job-offer-classifier
+```
+
+For an editable install, clone the [GitHub](https://github.com/kikejimenez/job_offer_classifier) repository and `cd` to the cloned repo directory, then run:
+
+```shell
+pip install -e job_offer_classifier
+```
 
 ## How to use
 
@@ -92,7 +102,7 @@ pl.plot_confusion_matrix('train')
 ```
 
 
-![png](docs/images/output_20_0.png)
+![png](docs/images/output_23_0.png)
 
 
 ```python
@@ -100,7 +110,7 @@ pl.plot_confusion_matrix('test')
 ```
 
 
-![png](docs/images/output_21_0.png)
+![png](docs/images/output_24_0.png)
 
 
 The percentage of the cases that are negative and predicted positive (*False Negative rate*) tend to be greater than the percent of the cases that are positive and predicted negative (*True Negative rate*).  This is consistent with that fact that the dataset has more positive than negative cases and the model tends to see more positives.
@@ -130,18 +140,18 @@ kfp.averages['train']
 
 
 
-    {'accuracy': 0.9926739931106567,
+    {'accuracy': 0.9880952388048172,
      'accuracy_baseline': 0.7985348105430603,
-     'auc': 0.9967785626649857,
-     'auc_precision_recall': 0.9990537911653519,
-     'average_loss': 0.04917445499449968,
+     'auc': 0.9955066740512848,
+     'auc_precision_recall': 0.9986858516931534,
+     'average_loss': 0.05668126232922077,
      'label/mean': 0.7985348105430603,
-     'loss': 0.08832819480448961,
-     'precision': 0.9909193366765976,
-     'prediction/mean': 0.7993625551462173,
-     'recall': 1.0,
+     'loss': 0.08459942694753408,
+     'precision': 0.9875305742025375,
+     'prediction/mean': 0.7992496639490128,
+     'recall': 0.997706413269043,
      'global_step': 5000.0,
-     'f1_score': 0.995436381378182}
+     'f1_score': 0.9925863572491515}
 
 
 
@@ -152,18 +162,18 @@ kfp.averages['test']
 
 
 
-    {'accuracy': 0.9444444179534912,
+    {'accuracy': 0.9555555433034897,
      'accuracy_baseline': 0.800000011920929,
-     'auc': 0.9571759253740311,
-     'auc_precision_recall': 0.9839732944965363,
-     'average_loss': 0.18561936542391777,
+     'auc': 0.9736689478158951,
+     'auc_precision_recall': 0.9902697503566742,
+     'average_loss': 0.14979842118918896,
      'label/mean': 0.800000011920929,
-     'loss': 0.18561936542391777,
-     'precision': 0.9559257626533508,
-     'prediction/mean': 0.8156909495592117,
+     'loss': 0.14979842118918896,
+     'precision': 0.9690233767032623,
+     'prediction/mean': 0.7958925664424896,
      'recall': 0.9756944328546524,
      'global_step': 5000.0,
-     'f1_score': 0.9655843100089102}
+     'f1_score': 0.9722424484561404}
 
 
 
@@ -176,7 +186,7 @@ kfp.best_seed
 
 
 
-    1852901353
+    2425132390
 
 
 

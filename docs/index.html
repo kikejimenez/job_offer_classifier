@@ -42,7 +42,30 @@ description: "Classification of email job offer response emails "
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Clone the <a href="https://github.com/kikejimenez/job_offer_classifier">GitHub</a> repository and <code>cd</code> to the cloned repo directory. Install the depencies in the <code>requeriments.txt</code>. The use of <em>REPL</em> or  <em>Notebook</em> is strongly  recommended</p>
+<p>The sentiment classifier can be found on PyPI so you can just run:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>pip install job-offer-classifier
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For an editable install, clone the <a href="https://github.com/kikejimenez/job_offer_classifier">GitHub</a> repository and <code>cd</code> to the cloned repo directory, then run:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>pip install -e job_offer_classifier
+</pre></div>
 
 </div>
 </div>
@@ -386,7 +409,7 @@ in june.
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Run the <code>k_fold_validation</code> method</p>
+<p>Run the <a href="/job_offer_classifier/k_fold_validation"><code>k_fold_validation</code></a> method</p>
 
 </div>
 </div>
@@ -438,18 +461,18 @@ in june.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;accuracy&#39;: 0.9926739931106567,
+<pre>{&#39;accuracy&#39;: 0.9880952388048172,
  &#39;accuracy_baseline&#39;: 0.7985348105430603,
- &#39;auc&#39;: 0.9967785626649857,
- &#39;auc_precision_recall&#39;: 0.9990537911653519,
- &#39;average_loss&#39;: 0.04917445499449968,
+ &#39;auc&#39;: 0.9955066740512848,
+ &#39;auc_precision_recall&#39;: 0.9986858516931534,
+ &#39;average_loss&#39;: 0.05668126232922077,
  &#39;label/mean&#39;: 0.7985348105430603,
- &#39;loss&#39;: 0.08832819480448961,
- &#39;precision&#39;: 0.9909193366765976,
- &#39;prediction/mean&#39;: 0.7993625551462173,
- &#39;recall&#39;: 1.0,
+ &#39;loss&#39;: 0.08459942694753408,
+ &#39;precision&#39;: 0.9875305742025375,
+ &#39;prediction/mean&#39;: 0.7992496639490128,
+ &#39;recall&#39;: 0.997706413269043,
  &#39;global_step&#39;: 5000.0,
- &#39;f1_score&#39;: 0.995436381378182}</pre>
+ &#39;f1_score&#39;: 0.9925863572491515}</pre>
 </div>
 
 </div>
@@ -482,18 +505,18 @@ in june.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;accuracy&#39;: 0.9444444179534912,
+<pre>{&#39;accuracy&#39;: 0.9555555433034897,
  &#39;accuracy_baseline&#39;: 0.800000011920929,
- &#39;auc&#39;: 0.9571759253740311,
- &#39;auc_precision_recall&#39;: 0.9839732944965363,
- &#39;average_loss&#39;: 0.18561936542391777,
+ &#39;auc&#39;: 0.9736689478158951,
+ &#39;auc_precision_recall&#39;: 0.9902697503566742,
+ &#39;average_loss&#39;: 0.14979842118918896,
  &#39;label/mean&#39;: 0.800000011920929,
- &#39;loss&#39;: 0.18561936542391777,
- &#39;precision&#39;: 0.9559257626533508,
- &#39;prediction/mean&#39;: 0.8156909495592117,
+ &#39;loss&#39;: 0.14979842118918896,
+ &#39;precision&#39;: 0.9690233767032623,
+ &#39;prediction/mean&#39;: 0.7958925664424896,
  &#39;recall&#39;: 0.9756944328546524,
  &#39;global_step&#39;: 5000.0,
- &#39;f1_score&#39;: 0.9655843100089102}</pre>
+ &#39;f1_score&#39;: 0.9722424484561404}</pre>
 </div>
 
 </div>
@@ -533,7 +556,7 @@ in june.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1852901353</pre>
+<pre>2425132390</pre>
 </div>
 
 </div>

@@ -80,8 +80,8 @@ class KFoldPipe(Pipeline):
         self.averages = average_scores(**self.history)
 
     def k_fold_validation(self):
-        ''' Run the pipeline over all the seeds.
-        Store the best seed, keep evaluations history and averages over the scores. \n
+        ''' Runs the pipeline over all the seeds.
+        Stores the best seed, keeps evaluations history and averages over the scores. \n
         On each iteration: \n
            -splits the data over the seed of the current iteration \n
            -run the pipeline \n

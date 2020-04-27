@@ -1,7 +1,9 @@
+# These are requirements for building the package
 tensorflow
 tensorflow_hub
 numpy
 pandas
 matplotlib
 seaborn
-sklearn
+twine
+nbdev
