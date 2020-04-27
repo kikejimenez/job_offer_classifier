@@ -201,18 +201,25 @@ class Pipeline:
         unless the estimator_dir is None.
         '''
         if self.estimator is not None and self.estimator_dir is None:
-            rmtree(self.estimator.model_dir,ignore_errors=True)
+            rmtree(self.estimator.model_dir, ignore_errors=True)
 
     def split_dataset(self):
+        ''' Train-test splits. Deletes empty dataframes.
+        '''
         self.dfs = balanced_labels_in_split(
             self.data, random_state=self.random_state, frac=self.frac
         )
+        if self.dfs['test'].shape[0] == 0:
+            del self.dsf['test']
+        if self.dfs['train'].shape[0] == 0:
+            del self.dsf['train']
 
     def input_fns(self):
-        self.input = {
-            'train': train_input_fs(train=self.dfs['train']),
-            'predict': predict_input_fs(**self.dfs)
-        }
+        self.input = {}
+        if 'train' in self.dfs.keys():
+            self.input['train'] = train_input_fs(train=self.dfs['train'])
+
+        self.input['predict'] = predict_input_fs(**self.dfs)
 
     def load_estimator(self):
         self.embedded_text_feature_column = embedded_text_feature_column_f(
@@ -223,7 +230,8 @@ class Pipeline:
         )
 
     def train(self):
-        train(self.estimator, self.input['train'], steps=self.train_steps)
+        if self.input['train'] is not None:
+            train(self.estimator, self.input['train'], steps=self.train_steps)
 
     def evaluate(self):
         self.evaluation = evaluate(self.estimator, **self.input['predict'])
