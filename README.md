@@ -24,13 +24,13 @@ pip install -e job_offer_classifier
 
 First load and run the data science pipeline by importing the module:
 
-```python
+```
 from job_offer_classifier.pipeline_classifier import Pipeline
 ```
 
 Instantiate the class `Pipeline` and call the `pipeline` method. This method loads the dataset, and trains and evaluates the model. The source file is the annotated dataset of payloads.
 
-```python
+```
 pl = Pipeline(src_file = '../data/interim/payloads.csv',random_state=931696214)
 pl.pipeline()
 ```
@@ -41,7 +41,7 @@ The parameter `random_state` is the pandas seed used in the dataframe split. Thi
 
 To make a prediction, use the `sentiment` method
 
-```python
+```
 pl.sentiment(''' Thank you for offering me the position of Merchandiser with Thomas Ltd.
 I am thankful to accept this job offer and look ahead to starting my career with your company
 on June 27, 2000.''')
@@ -56,7 +56,7 @@ on June 27, 2000.''')
 
 One can take an example from the test set, contained in the `dfs` attribute. This attribute is a dictionary of  pandas dataframes.
 
-```python
+```
 example = pl.dfs['test'].sample(random_state=1213702178).payload.iloc[0]
 print(example.strip())
 ```
@@ -76,7 +76,7 @@ print(example.strip())
     in june.
 
 
-```python
+```
 pl.sentiment(example)
 ```
 
@@ -97,7 +97,7 @@ We use two tools to assesss the performance of the model:
 
 To plot the confusion matrix, the `Pipeline` has the method `plot_confusion_matrix`.
 
-```python
+```
 pl.plot_confusion_matrix('train')
 ```
 
@@ -105,7 +105,7 @@ pl.plot_confusion_matrix('train')
 ![png](docs/images/output_23_0.png)
 
 
-```python
+```
 pl.plot_confusion_matrix('test')
 ```
 
@@ -120,20 +120,20 @@ The percentage of the cases that are negative and predicted positive (*False Neg
 
 To assess the performance of the model via the k fold validation method, import the class [`KFoldPipe`](/job_offer_classifier/validations#KFoldPipe)
 
-```python
+```
 from job_offer_classifier.validations import KFoldPipe
 ```
 
 Run the `k_fold_validation` method
 
-```python
+```
 kfp = KFoldPipe(src_file='../data/interim/payloads.csv',n_splits=4)
 kfp.k_fold_validation()
 ```
 
 The averaged scores are stored in `averages`
 
-```python
+```
 kfp.averages['train']
 ```
 
@@ -155,7 +155,7 @@ kfp.averages['train']
 
 
 
-```python
+```
 kfp.averages['test']
 ```
 
@@ -179,7 +179,7 @@ kfp.averages['test']
 
 The seed of the best F1 score is stored in `best_seed`
 
-```python
+```
 kfp.best_seed
 ```
 

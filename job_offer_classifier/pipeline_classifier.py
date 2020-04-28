@@ -187,21 +187,22 @@ class Pipeline:
         '''
         self.frac = frac
         self.estimator_dir = estimator_dir
+        self._is_estimator_dir = path.isdir(str(estimator_dir))
         self.random_state = random_state
         self.train_steps = train_steps
         self.module_spec = "https://tfhub.dev/google/nnlm-en-dim128/1"
-        self.estimator = None
 
         if src_file is not None:
             self.data = pd.read_csv(src_file)
             self.split_dataset()
 
+
     def __del__(self):
         ''' Removes the `estimator` and its corresponding directory,
         unless the estimator_dir is None.
         '''
-        if self.estimator is not None and self.estimator_dir is None:
-            rmtree(self.estimator.model_dir, ignore_errors=True)
+        if not self._is_estimator_dir:
+                rmtree(self.estimator_dir, ignore_errors=True)
 
     def split_dataset(self):
         ''' Train-test splits. Deletes empty dataframes.
@@ -210,9 +211,9 @@ class Pipeline:
             self.data, random_state=self.random_state, frac=self.frac
         )
         if self.dfs['test'].shape[0] == 0:
-            del self.dsf['test']
+            del self.dfs['test']
         if self.dfs['train'].shape[0] == 0:
-            del self.dsf['train']
+            del self.dfs['train']
 
     def input_fns(self):
         self.input = {}
@@ -228,6 +229,7 @@ class Pipeline:
         self.estimator = load_estimator(
             self.embedded_text_feature_column, model_dir=self.estimator_dir
         )
+        self.estimator_dir = self.estimator.model_dir
 
     def train(self):
         if self.input['train'] is not None:
