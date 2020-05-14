@@ -84,8 +84,8 @@ class KFoldPipe(Pipeline):
         Stores the best seed, keeps evaluations history and averages over the scores. \n
         On each iteration: \n
            -splits the data over the seed of the current iteration \n
-           -run the pipeline \n
-           -update history and best scores \n
+           -runs the pipeline \n
+           -updates history and best scores \n
 
         '''
 

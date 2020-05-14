@@ -20,7 +20,9 @@ def load_datasets(webpage_file, sibatel_file):
 # Cell
 def merge_datasets(webpages, sibatel, dst_file):
     merged_df = pd.concat([webpages, sibatel])
-    merged_df['sentiment'] = merged_df.type.apply(lambda t: int(t == 'accept'))
+    merged_df['sentiment'] = merged_df.type.apply(
+        lambda t: 'positive' if t == 'accept' else 'negative'
+    )
     _ = merged_df.pop('type')
     merged_df.to_csv(dst_file, index=False)
     return merged_df

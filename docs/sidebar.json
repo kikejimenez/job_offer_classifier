@@ -3,6 +3,7 @@
     "Overview": "/",
     "Merge datasets": "/merge_datasets",
     "Pipeline ": "/pipeline_classifier",
-    "Algorithm Validations": "/validations"
+    "Algorithm Validations": "/validations",
+    "Multiclass ": "/multiclass"
   }
 }
