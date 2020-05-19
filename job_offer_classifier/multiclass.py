@@ -138,7 +138,7 @@ def sentiment(estimator, doc,categories):
     return pred
 
 # Cell
-def plot_confusion_matrix(df_data, estimator, input_fn, header, labels):
+def plot_confusion_matrix(df_data, estimator, input_fn, header, labels,fig_file =None):
     ''' Plot the Confusion Matrix: ${{TN,FN},{FP,TP}}$
     '''
     def get_predictions(estimator, input_fn):
@@ -156,6 +156,8 @@ def plot_confusion_matrix(df_data, estimator, input_fn, header, labels):
     plt.title(header)
     plt.xlabel("Predicted")
     plt.ylabel("True")
+    if fig_file is not None:
+        plt.savefig(fig_file)
 
 # Cell
 def export_estimator(estimator, dst_estimator):
@@ -235,13 +237,14 @@ class Multiclass:
     def evaluate(self):
         self.evaluation = evaluate(self.estimator, **self.input['predict'])
 
-    def plot_confusion_matrix(self, label):
+    def plot_confusion_matrix(self, label, fig_file=None):
         plot_confusion_matrix(
             self.dfs[label],
             self.estimator,
             self.input['predict'][label],
             header=label + ' data',
-            labels = self.categories.categories
+            labels=self.categories.categories,
+            fig_file=fig_file
         )
 
     def export_estimator(self, dst_dir):
@@ -256,7 +259,7 @@ class Multiclass:
         return predict(self.estimator, df_examples)
 
     def sentiment(self, doc):
-        return sentiment(self.estimator, doc,categories=self.categories)
+        return sentiment(self.estimator, doc, categories=self.categories)
 
     def pipeline(self):
         ''' The pipeline flow is:
